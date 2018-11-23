@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set clipboard=unnamed         " copies to clipboard rather than vim buffer
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -27,6 +28,8 @@ set showmatch 		  "highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
+autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
+
 "auto completion settings"
 set completeopt+=menuone
 set completeopt+=noinsert
@@ -40,4 +43,5 @@ let g:clang_complete_auto = 1
 let g:mucomplete#enable_auto_at_startup = 1
 "shut off completion messages"
 set shortmess+=c
+
 
