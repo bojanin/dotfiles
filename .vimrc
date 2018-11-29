@@ -4,8 +4,9 @@ set clipboard=unnamed         " copies to clipboard rather than vim buffer
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
+" Vundle stuff
 call vundle#begin()
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'lifepillar/vim-mucomplete'
@@ -27,7 +28,6 @@ set lazyredraw 		  " redraw screen lazily for faster macros
 set showmatch 		  "highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-
 autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
 
 "auto completion settings"
@@ -36,6 +36,7 @@ set completeopt+=noinsert
 set noinfercase
 set completeopt-=preview
 set completeopt+=menuone,noselect
+
 " The following line assumes `brew install llvm` in macOS
 let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
 let g:clang_user_options = '-std=c++14'
@@ -43,5 +44,3 @@ let g:clang_complete_auto = 1
 let g:mucomplete#enable_auto_at_startup = 1
 "shut off completion messages"
 set shortmess+=c
-
-
