@@ -19,16 +19,17 @@ set path+=**	" enables fuzzy searching with :find
 
 filetype plugin indent on " not sure what this does but is requires
 set number 		  " enables line numbers
-set tabstop=4     	  " number of visual spaces per tab
-set softtabstop=4 	  " number of spaces in tab while editing
+set tabstop=2     	  " number of visual spaces per tab
+set softtabstop=2	  " number of spaces in tab while editing
 set expandtab 		  " turns tabs into spaces
 set cursorline 		  " show command in bottom bar
-set showcmd 		  " highlight current line 
+set showcmd 		  " highlight current line
 set lazyredraw 		  " redraw screen lazily for faster macros
 set showmatch 		  "highlight matching [{()}]
 set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
+
 autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
+
 
 "auto completion settings"
 set completeopt+=menuone
@@ -42,5 +43,22 @@ let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
 let g:clang_user_options = '-std=c++14'
 let g:clang_complete_auto = 1
 let g:mucomplete#enable_auto_at_startup = 1
+
 "shut off completion messages"
 set shortmess+=c
+
+" removed up, down, left right to learn to use hjkl
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" /Users/tommy/Documents/c
+autocmd bufnewfile *.c so /Users/tommy/Documents/c/c_header.txt
+autocmd bufnewfile *.c exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.c execute "normal `a"
+
+set bg=light
