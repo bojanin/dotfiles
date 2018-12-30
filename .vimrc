@@ -19,8 +19,9 @@ set path+=**	" enables fuzzy searching with :find
 
 filetype plugin indent on " not sure what this does but is requires
 set number 		  " enables line numbers
-set tabstop=2     	  " number of visual spaces per tab
-set softtabstop=2	  " number of spaces in tab while editing
+set tabstop=4	  " number of visual spaces per tab
+set softtabstop=4	  " number of spaces in tab while editing
+set shiftwidth=4
 set expandtab 		  " turns tabs into spaces
 set cursorline 		  " show command in bottom bar
 set showcmd 		  " highlight current line
