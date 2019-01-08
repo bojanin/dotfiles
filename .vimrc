@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " Vundle stuff
 call vundle#begin()
+Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'lifepillar/vim-mucomplete'
@@ -53,13 +54,5 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-
-" /Users/tommy/Documents/c
-autocmd bufnewfile *.c so /Users/tommy/Documents/c/c_header.txt
-autocmd bufnewfile *.c exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.c execute "normal ma"
-autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.c execute "normal `a"
 
 set bg=light
