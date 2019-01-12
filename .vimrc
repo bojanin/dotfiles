@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " Vundle stuff
 call vundle#begin()
+Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
