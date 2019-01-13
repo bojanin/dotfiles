@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " Vundle stuff
 call vundle#begin()
+Plugin 'scrooloose/nerdtree'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
@@ -40,6 +41,9 @@ set completeopt+=noinsert
 set noinfercase
 set completeopt-=preview
 set completeopt+=menuone,noselect
+
+" NERDTree
+:map <C-n> :NERDTree
 
 " The following line assumes `brew install llvm` in macOS
 let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
