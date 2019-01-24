@@ -8,6 +8,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Vundle stuff
 call vundle#begin()
 Plugin 'scrooloose/nerdtree'
+Plugin 'python-mode/python-mode'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
@@ -31,9 +32,11 @@ set showcmd 		  " highlight current line
 set lazyredraw 		  " redraw screen lazily for faster macros
 set showmatch 		  "highlight matching [{()}]
 set incsearch           " search as characters are entered
-
+:au BufEnter *.* :set colorcolumn= " Removed the annoying color column.
 autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
 
+" sets pymodes python to python3
+let g:pymode_python='python3'
 
 "auto completion settings"
 set completeopt+=menuone
