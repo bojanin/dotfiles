@@ -7,13 +7,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " Vundle stuff
 call vundle#begin()
+Plugin 'jeaye/color_coded'
+Plugin 'vhdirk/vim-cmake'
+Plugin 'rdnetto/YCM-Generator'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'python-mode/python-mode'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'lifepillar/vim-mucomplete'
 call vundle#end()
 
 set history=300 " sets undo history to 300
@@ -38,6 +41,15 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdow
 " sets pymodes python to python3
 let g:pymode_python='python3'
 
+" CMake flags
+let g:cmake_cxx_compiler='clang++'
+let g:cmake_c_compiler='clang'
+let g:cmake_project_generator='Xcode'
+let g:cmake_ycm_symlinks=1
+
+" remove the question when opening a new file in vim with uses ycm
+let g:ycm_confirm_extra_conf=0
+
 "auto completion settings"
 set completeopt+=menuone
 set completeopt+=noinsert
@@ -47,12 +59,6 @@ set completeopt+=menuone,noselect
 
 " NERDTree
 :map <C-n> :NERDTree
-
-" The following line assumes `brew install llvm` in macOS
-let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
-let g:clang_user_options = '-std=c++14'
-let g:clang_complete_auto = 1
-let g:mucomplete#enable_auto_at_startup = 1
 
 "shut off completion messages"
 set shortmess+=c
