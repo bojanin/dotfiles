@@ -1,13 +1,14 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set clipboard=unnamed         " copies to clipboard rather than vim buffer
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set bg=dark
 
 " Vundle stuff
 call vundle#begin()
 Plugin 'jeaye/color_coded'
+Plugin 'morhetz/gruvbox'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'scrooloose/nerdtree'
@@ -31,7 +32,7 @@ set softtabstop=4	  " number of spaces in tab while editing
 set shiftwidth=4
 set expandtab 		  " turns tabs into spaces
 set cursorline 		  " show command in bottom bar
-set showcmd 		  " highlight current line
+set showcmd 		  " highlight current line 
 set lazyredraw 		  " redraw screen lazily for faster macros
 set showmatch 		  "highlight matching [{()}]
 set incsearch           " search as characters are entered
@@ -44,7 +45,6 @@ let g:pymode_python='python3'
 " CMake flags
 let g:cmake_cxx_compiler='clang++'
 let g:cmake_c_compiler='clang'
-let g:cmake_project_generator='Xcode'
 let g:cmake_ycm_symlinks=1
 
 " remove the question when opening a new file in vim with uses ycm
@@ -69,4 +69,4 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-set bg=light
+colorscheme gruvbox
