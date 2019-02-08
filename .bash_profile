@@ -3,6 +3,7 @@ export TERM=screen-256color-bce
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+export EDITOR='vim'
 
 #############
 ## ALIASES ##
@@ -31,4 +32,3 @@ export PATH=$HOME/gems/bin:$PATH
 eval "$(rbenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
