@@ -1,4 +1,5 @@
 # sets colors to look cool on the terminal
+export TERM=screen-256color-bce
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -9,14 +10,14 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 alias pip='/usr/local/bin/pip2'
 alias weather='curl wttr.in'
-
+alias tmux='tmux -2'
 
 #THEOS device settings
 export THEOS=~/theos
 export PATH=$THEOS/bin:$PATH
 export THEOS_DEVICE_IP=localhost THEOS_DEVICE_PORT=2222
 export PATH=~/.npm-global/bin:$PATH
-
+ 
 
 
 # Setting PATH for Python 3.6
@@ -28,3 +29,6 @@ export PATH
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH=$HOME/gems/bin:$PATH
 eval "$(rbenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
