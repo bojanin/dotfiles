@@ -1,12 +1,14 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set clipboard=unnamed         " copies to clipboard rather than vim buffer
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 set bg=dark
 
 " Vundle stuff
 call vundle#begin()
+Plugin 'guns/ultisnips'
 Plugin 'jeaye/color_coded'
 Plugin 'morhetz/gruvbox'
 Plugin 'vhdirk/vim-cmake'
@@ -20,20 +22,20 @@ Plugin 'jiangmiao/auto-pairs'
 call vundle#end()
 
 set history=300 " sets undo history to 300
-syntax enable	" enables syntax
-set wildmenu	" sets the visual menu on the bottom
-set path+=**	" enables fuzzy searching with :find
+syntax enable   " enables syntax
+set wildmenu    " sets the visual menu on the bottom
+set path+=**    " enables fuzzy searching with :find
 
 filetype plugin indent on " not sure what this does but is requires
-set number 		  " enables line numbers
-set tabstop=4	  " number of visual spaces per tab
-set softtabstop=4	  " number of spaces in tab while editing
+set number        " enables line numbers
+set tabstop=4     " number of visual spaces per tab
+set softtabstop=4     " number of spaces in tab while editing
 set shiftwidth=4
-set expandtab 		  " turns tabs into spaces
-set cursorline 		  " show command in bottom bar
-set showcmd 		  " highlight current line 
-set lazyredraw 		  " redraw screen lazily for faster macros
-set showmatch 		  "highlight matching [{()}]
+set expandtab         " turns tabs into spaces
+set cursorline        " show command in bottom bar
+set showcmd           " highlight current line 
+set lazyredraw        " redraw screen lazily for faster macros
+set showmatch         "highlight matching [{()}]
 set incsearch           " search as characters are entered
 :au BufEnter *.* :set colorcolumn= " Removed the annoying color column.
 autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
@@ -41,13 +43,34 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdow
 " sets pymodes python to python3
 let g:pymode_python='python3'
 
-" CMake flags
+"" CMake flags
 let g:cmake_cxx_compiler='clang++'
 let g:cmake_c_compiler='clang'
 let g:cmake_ycm_symlinks=1
 
+" objc triggers
+let g:ycm_semantic_triggers = {
+ \ 'objc' : ['re!\@"\.*"\s',
+ \ 're!\@\w+\.*\w*\s',
+ \ 're!\@\(\w+\.*\w*\)\s',
+ \ 're!\@\(\s*',
+ \ 're!\@\[.*\]\s',
+ \ 're!\@\[\s*',
+ \ 're!\@\{.*\}\s',
+ \ 're!\@\{\s*',
+ \ "re!\@\’.*\’\s",
+ \ '#ifdef ',
+ \ 're!:\s*',
+ \ 're!=\s*',
+ \ 're!,\s*', ],
+ \ }
+
 " remove the question when opening a new file in vim with uses ycm
 let g:ycm_confirm_extra_conf=0
+let g:ycm_extra_conf_vim_data = ['&filetype']
+let g:ycm_max_diagnostics_to_display = 0
+" logos syntax for theos files.
+au BufNewFile,BufRead *.xm,*.xmm,*.l.mm setf logos
 
 "auto completion settings"
 set completeopt+=menuone
