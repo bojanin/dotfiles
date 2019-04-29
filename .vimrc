@@ -8,17 +8,16 @@ set bg=dark
 
 " Vundle stuff
 call vundle#begin()
-Plugin 'guns/ultisnips'
-Plugin 'jeaye/color_coded'
 Plugin 'morhetz/gruvbox'
-Plugin 'vhdirk/vim-cmake'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'justinmk/vim-syntax-extra'
-Plugin 'tibabit/vim-templates'
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'rust-lang/rust.vim'
+Plugin 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 call vundle#end()
 
 set history=300 " sets undo history to 300
@@ -40,6 +39,7 @@ set incsearch           " search as characters are entered
 :au BufEnter *.* :set colorcolumn= " Removed the annoying color column.
 autocmd BufNewFile,BufRead *.md set filetype=markdown " sets filetype to markdown when file extension is .md
 
+let g:autofmt_autosave=1
 " sets pymodes python to python3
 let g:pymode_python='python3'
 
@@ -91,4 +91,20 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rls'],
+    \ }
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'go': ['go-langserver'] }
+
+noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
+noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
+noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+" }}}
 colorscheme gruvbox
