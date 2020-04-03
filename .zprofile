@@ -1,5 +1,5 @@
-export EDITOR='vim'
-
+# design
+export PS1="\u::\w"
 # go stuff
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
@@ -10,6 +10,7 @@ export PATH=$PATH:$GOROOT/bin
 alias obs='/Applications/OBS.app/Contents/MacOS/OBS'
 alias deld='rm -rf /Users/tommy/Library/Developer/Xcode/DerivedData/*'
 alias bandwhich='sudo bandwhich -i en0'
+alias vim='/usr/local/Cellar/macvim/8.2-162/MacVim.app/Contents/MacOS/Vim'
 export PATH="/usr/local/sbin:$PATH"
 
 
