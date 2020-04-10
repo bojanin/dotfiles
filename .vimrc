@@ -38,24 +38,30 @@ set autoindent
 
 let mapleader = ","
 
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-
 map <C-b> :NERDTreeToggle<CR>
 
 set backspace=indent,eol,start
+
 call plug#begin()
+Plug 'keith/swift.vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'preservim/nerdtree'
 Plug 'arzg/vim-colors-xcode'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'ycm-core/YouCompleteMe'
 call plug#end()
+
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path = exepath("clangd")
 colorscheme xcodedark
+
+" syntastic + swift
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Swift-vim
+let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
