@@ -43,25 +43,11 @@ map <C-b> :NERDTreeToggle<CR>
 set backspace=indent,eol,start
 
 call plug#begin()
-Plug 'keith/swift.vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'arzg/vim-colors-xcode'
 Plug 'ycm-core/YouCompleteMe'
 call plug#end()
-
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path = exepath("clangd")
 colorscheme xcodedark
-
-" syntastic + swift
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Swift-vim
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
