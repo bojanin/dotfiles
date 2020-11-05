@@ -77,3 +77,7 @@ let g:cpp_simple_highlight = 1
 " ctags recursive (from http://stackoverflow.com/a/5019111/53997 )
 set tags=tags;/
 
+let g:ycm_confirm_extra_conf = 0
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
