@@ -84,13 +84,7 @@ let g:cpp_member_highlight = 1
 " (affects both C and C++ files)
 let g:cpp_simple_highlight = 1
 
-" ctags recursive (from http://stackoverflow.com/a/5019111/53997 )
-set tags=tags;/
-
 let g:ycm_confirm_extra_conf = 0
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_files=0
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " fuzzy search
