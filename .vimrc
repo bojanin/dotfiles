@@ -35,6 +35,10 @@ set visualbell t_vb=
 " turn off visual bell
 set novisualbell
 
+" autoread files changed on disk
+set autoread
+set cursorline
+
 " lets you mass indent multiple lines
 vnoremap < <gv
 vnoremap > >gv
@@ -42,20 +46,26 @@ vnoremap > >gv
 nnoremap H gT
 nnoremap L gt
 
+" Better searching
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
 call plug#begin('~/.vim/plugged')
-" CPP code complete
-Plug 'Valloric/YouCompleteMe'
+" YCM causes cpu heartattacks on mac cpp files
+autocmd FileType py Plug 'Valloric/YouCompleteMe'
 " more syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
 Plug 'https://github.com/xuyuanp/nerdtree-git-plugin'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'chengzeyi/fzf-preview.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'https://github.com/vim-scripts/a.vim'
 call plug#end()
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 let mapleader = ","
 map <C-b> :NERDTreeToggle<CR>
@@ -78,6 +88,22 @@ let g:cpp_simple_highlight = 1
 set tags=tags;/
 
 let g:ycm_confirm_extra_conf = 0
-
-let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_max_files=0
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" fuzzy search
+set rtp+=~/.fzf
+nnoremap <c-p> :GFiles<cr>
+nnoremap <c-g> :FZFRg<cr>
+
+set mouse=a
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always -g *.{djinni,cc,h,swift,kt,lcm,proto,java,py}'
+  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
