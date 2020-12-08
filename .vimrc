@@ -52,15 +52,18 @@ set smartcase
 set incsearch
 set hlsearch
 
+set rtp+=~/.fzf
+
 call plug#begin('~/.vim/plugged')
 " YCM causes cpu heartattacks on mac cpp files
 autocmd FileType py Plug 'Valloric/YouCompleteMe'
+
 " more syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
 Plug 'https://github.com/xuyuanp/nerdtree-git-plugin'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
 Plug 'chengzeyi/fzf-preview.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
@@ -69,6 +72,7 @@ call plug#end()
 
 let mapleader = ","
 map <C-b> :NERDTreeToggle<CR>
+nnoremap <c-g> :RG<cr>
 set backspace=indent,eol,start
 
 " best theme, obviosuly
@@ -88,16 +92,21 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " fuzzy search
-set rtp+=~/.fzf
 nnoremap <c-p> :GFiles<cr>
-nnoremap <c-g> :FZFRg<cr>
 
 set mouse=a
+" VSCode like search
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case
+              \ -g "*.{djinni,proto,mm,m,lcm,cc,h,swift,py,java,kt}"
+              \ -g "!build/*"
+              \ -g "!third_party_modules/*"
+              \ -g "!third_party/*"
+              \ -g "!bazel-out/*" -- %s || true'
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always -g *.{djinni,cc,h,swift,kt,lcm,proto,java,py}'
-  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
