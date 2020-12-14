@@ -55,9 +55,6 @@ set hlsearch
 set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
-" YCM causes cpu heartattacks on mac cpp files
-autocmd FileType py Plug 'Valloric/YouCompleteMe'
-
 " more syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
 Plug 'https://github.com/xuyuanp/nerdtree-git-plugin'
@@ -67,7 +64,9 @@ Plug 'preservim/nerdtree'
 Plug 'chengzeyi/fzf-preview.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
+Plug 'udalov/kotlin-vim'
 Plug 'https://github.com/vim-scripts/a.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 let mapleader = ","
@@ -110,3 +109,10 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Coc auto complete options
+" enter to auto complete
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" c-j, c-j for navigation
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-k>"
