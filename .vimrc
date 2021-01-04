@@ -35,6 +35,16 @@ set visualbell t_vb=
 " turn off visual bell
 set novisualbell
 
+
+" call code_format on file write
+function! SkydioCodeFormat()
+  silent exec '!code_format %'
+  exec 'e'
+endfunction
+
+" call skydio formatter on filewrite
+autocmd BufWritePost * call SkydioCodeFormat()
+
 " autoread files changed on disk
 set autoread
 set cursorline
@@ -60,13 +70,13 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'https://github.com/xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'chengzeyi/fzf-preview.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'udalov/kotlin-vim'
 Plug 'https://github.com/vim-scripts/a.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 let mapleader = ","
@@ -97,7 +107,7 @@ set mouse=a
 " VSCode like search
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case
-              \ -g "*.{djinni,proto,mm,m,lcm,cc,h,swift,py,java,kt}"
+              \ -g "*.{djinni,proto,mm,m,lcm,cc,h,swift,py,java,kt,cmake}"
               \ -g "!build/*"
               \ -g "!third_party_modules/*"
               \ -g "!third_party/*"
@@ -110,9 +120,3 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-" Coc auto complete options
-" enter to auto complete
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" c-j, c-j for navigation
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-k>"
