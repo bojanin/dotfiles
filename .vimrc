@@ -77,9 +77,10 @@ Plug 'morhetz/gruvbox'
 Plug 'udalov/kotlin-vim'
 Plug 'https://github.com/vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
-let mapleader = ","
+let mapleader = " "
 map <C-b> :NERDTreeToggle<CR>
 nnoremap <c-g> :RG<cr>
 set backspace=indent,eol,start
@@ -102,6 +103,13 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 " fuzzy search
 nnoremap <c-p> :GFiles<cr>
+"ulti snippets
+let g:UltiSnipsExpandTrigger="<c-f>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 set mouse=a
 " VSCode like search
