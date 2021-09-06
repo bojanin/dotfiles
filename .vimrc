@@ -41,6 +41,9 @@ set novisualbell
 
 " Show the arguments of a function and autocomplete in ycm
 set completeopt=menuone,popup
+" now it is possible to paste many times over selected text
+xnoremap <expr> p 'pgv"'.v:register.'y`>'
+xnoremap <expr> P 'Pgv"'.v:register.'y`>'
 
 " call code_format on file write
 function! SkydioCodeFormat()
@@ -74,20 +77,31 @@ set rtp+=~/.fzf
 call plug#begin('~/.vim/plugged')
 " more syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
+" fuzzy search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" git wrapper
 Plug 'tpope/vim-fugitive'
+" Preview pane 
 Plug 'chengzeyi/fzf-preview.vim'
+" +/- leftside for git
+Plug 'mhinz/vim-signify'
+" theme
 Plug 'morhetz/gruvbox'
+" kotlin highlighting
 Plug 'udalov/kotlin-vim'
+" switch to header/cc files
 Plug 'https://github.com/vim-scripts/a.vim'
+" autocompelte
 Plug 'Valloric/YouCompleteMe'
-Plug 'SirVer/ultisnips'
+" swift syntax
 Plug 'keith/swift.vim'
+" djinni syntax
 Plug 'r0mai/vim-djinni'
 call plug#end()
 
-let mapleader = " "
+noremap <Space> <Nop>
+map <Space> <leader>
 
 nnoremap <c-g> :RG<cr>
 set backspace=indent,eol,start
@@ -114,6 +128,9 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_auto_hover = 'CursorHold'
 let g:ycm_auto_trigger = 1
 let g:ycm_clangd_uses_ycmd_caching = 0
+nnoremap <silent> <leader>gd :silent! YcmCompleter GoTo <CR>
+nnoremap <silent> <leader>gr :silent! YcmCompleter GoToReferences <CR>
+nnoremap <silent> <leader>rr :silent! YcmCompleter RefactorRename <CR>
  
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-f>"
@@ -145,4 +162,22 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" Have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+      \| exe "normal! g'\"" | endif
+      endif
+" Have Vim maintain undo history between sessions
+set undofile "
+set undodir=~/.vim/undodir
+" more git config
+let g:signify_vcs_list = ['git', 'svn', 'hg']
+let g:signify_sign_change = '~'
+let g:signify_sign_delete = '-'
+let g:signify_update_on_focusgained = 1
+" copied from jerrys vimrc
+" makes colors POP
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 
