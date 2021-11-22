@@ -150,7 +150,7 @@ set mouse=a
 " VSCode like search
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case
-              \ -g "*.{djinni,proto,mm,m,lcm,cc,h,swift,py,java,kt,cmake,txt}"
+              \ -g "*.{djinni,proto,mm,m,lcm,cc,h,swift,py,java,kt,cmake,txt,xml,rs,jam,bzl,bazel}"
               \ -g "!build/*"
               \ -g "!third_party_modules/*"
               \ -g "!third_party/*"
@@ -179,5 +179,4 @@ let g:signify_update_on_focusgained = 1
 " makes colors POP
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 
