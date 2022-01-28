@@ -1,41 +1,46 @@
-# design
-export PS1="\u::\w"
 export CLICOLOR=1
 export LSCOLORS=GxBxCxDxexegedabagaced
-# go stuff
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+# Alias for Yubikey pin prompt
+alias yubact="ssh-add -e /usr/local/lib/opensc-pkcs11.so; ssh-add -s /usr/local/lib/opensc-pkcs11.so"
 
-#DEVICE SETTINGS
-export THEOS=~/theos
-export THEOS_MAKE_PATH=$THEOS/makesfiles/
-export THEOS_DEVICE_IP=127.0.0.1
-export THEOS_DEVICE_PORT=2222
 
-export MonkeyDevDeviceIP=192.168.50.70
-export MonkeyDevDevicePort=22
-export MonkeyDevDevicePassword=alpine
+# Auto finds ssh-agent
+. ~/yubikey_scripts/ssh-find-agent/ssh-find-agent.sh
+ssh_find_agent -a
+if [ -z "$SSH_AUTH_SOCK" ]
+then
+    eval $(ssh-agent) > /dev/null
+    ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+fi
 
-# python virtual env
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/local/bin/python3 '
-export PROJECT_HOME=$HOME/Desktop/python_projects
-source /usr/local/bin/virtualenvwrapper.sh
 
-# personal commands
-alias obs='/Applications/OBS.app/Contents/MacOS/OBS'
-alias deld='rm -rf /Users/tommy/Library/Developer/Xcode/DerivedData/*'
-alias bandwhich='sudo bandwhich -i en0'
-alias vim='/usr/local/Cellar/macvim/8.2-162/MacVim.app/Contents/MacOS/Vim'
-export PATH="/usr/local/sbin:$PATH"
+# Auto prompt yubikey on new terminal
+ioreg -p IOUSB | grep -i yubikey >/dev/null
+YUBIKEY_STATUS=$?
+ssh-add -L >/dev/null
+ACTIVE_STATUS=$?
+if [ $YUBIKEY_STATUS -eq 0 ] && [ $ACTIVE_STATUS -eq 1 ]; then
+    yubact
+fi
 
+
+export SKYREV_REMOTE_USER=tombojanin
+export PATH=/Users/skydio/aircam/build/host_aircam/bin:$PATH
+export PATH=/usr/local/Cellar/autopep8/1.4.3/bin/autopep8:$PATH
+export AIRCAM_ROOT=/Users/skydio/aircam
+export EDITOR='vim'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+
+# Useful aliases
+alias deld='rm -rf /Users/tom/Library/Developer/Xcode/DerivedData/*'
+alias sshpad='ssh -A tombojanin@192.168.50.217'
+alias sshpanther='ssh -A mobiledev2@panther'
+alias releasepad='ssh mobiledev@192.168.5.13'
+alias tckr='while true; do clear; bash ~/ticker.sh $(cat ~/.ticker.conf); sleep 2; done'
+alias iml='make ios_libs_device'
 alias gc='git commit'
 alias gs='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gp='git push'
 alias gpp='git pull'
-export EDITOR='vim'
