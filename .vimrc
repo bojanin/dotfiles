@@ -127,7 +127,8 @@ let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_auto_hover = 'CursorHold'
 let g:ycm_auto_trigger = 1
-let g:ycm_clangd_uses_ycmd_caching = 0
+" make this 0 if you see performance hits
+let g:ycm_clangd_uses_ycmd_caching = 1
 nnoremap <silent> <leader>gd :silent! YcmCompleter GoTo <CR>
 nnoremap <silent> <leader>gr :silent! YcmCompleter GoToReferences <CR>
 nnoremap <silent> <leader>rr :silent! YcmCompleter RefactorRename <CR>

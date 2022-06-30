@@ -1,6 +1,3 @@
-export PATH="/Users/tom/bin:$PATH"
-export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 setopt prompt_subst
 autoload -Uz vcs_info
@@ -18,5 +15,7 @@ export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
-if [ -e /Users/tom/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/tom/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+if [ -e /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib":$LDFLAGS
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include":$CPPFLAGS

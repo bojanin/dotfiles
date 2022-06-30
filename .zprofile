@@ -5,13 +5,13 @@ alias yubact="ssh-add -e /usr/local/lib/opensc-pkcs11.so; ssh-add -s /usr/local/
 
 
 # Auto finds ssh-agent
-. ~/yubikey_scripts/ssh-find-agent/ssh-find-agent.sh
-ssh_find_agent -a
-if [ -z "$SSH_AUTH_SOCK" ]
-then
-    eval $(ssh-agent) > /dev/null
-    ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
-fi
+# . ~/yubikey_scripts/ssh-find-agent/ssh-find-agent.sh
+# ssh_find_agent -a
+# if [ -z "$SSH_AUTH_SOCK" ]
+# then
+#     eval $(ssh-agent) > /dev/null
+#     ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+# fi
 
 
 # Auto prompt yubikey on new terminal
@@ -24,16 +24,17 @@ if [ $YUBIKEY_STATUS -eq 0 ] && [ $ACTIVE_STATUS -eq 1 ]; then
 fi
 
 
+# AIRCAM SETTINGS
 export SKYREV_REMOTE_USER=tombojanin
 export PATH=/Users/skydio/aircam/build/host_aircam/bin:$PATH
-export PATH=/usr/local/Cellar/autopep8/1.4.3/bin/autopep8:$PATH
 export AIRCAM_ROOT=/Users/skydio/aircam
 export EDITOR='vim'
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+export DISABLE_MOBILE_PTREE_CHECKING=true
 
 # Useful aliases
-alias deld='rm -rf /Users/tom/Library/Developer/Xcode/DerivedData/*'
-alias sshpad='ssh -A tombojanin@192.168.50.217'
+alias deld='rm -rf $HOME/Library/Developer/Xcode/DerivedData/*'
+alias sshpad='ssh tombojanin@10.100.26.35'
 alias sshpanther='ssh -A mobiledev2@panther'
 alias releasepad='ssh mobiledev@192.168.5.13'
 alias tckr='while true; do clear; bash ~/ticker.sh $(cat ~/.ticker.conf); sleep 2; done'
@@ -44,3 +45,9 @@ alias gd='git diff'
 alias ga='git add'
 alias gp='git push'
 alias gpp='git pull'
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/versions/2.7.18/bin:$PATH"     
+eval "$(pyenv init --path)"                                                                                                                                                       
+export AWS_PROFILE=tsb-m1-mac
