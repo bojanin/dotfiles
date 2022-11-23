@@ -27,18 +27,20 @@ fi
 # AIRCAM SETTINGS
 export SKYREV_REMOTE_USER=tombojanin
 export PATH=/Users/skydio/aircam/build/host_aircam/bin:$PATH
+export PATH=/opt/homebrew/opt/python@3.8/bin:$PATH
 export AIRCAM_ROOT=/Users/skydio/aircam
 export EDITOR='vim'
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
 export DISABLE_MOBILE_PTREE_CHECKING=true
 
 # Useful aliases
 alias deld='rm -rf $HOME/Library/Developer/Xcode/DerivedData/*'
-alias sshpad='ssh tombojanin@10.100.26.35'
+alias sshpad='ssh tomabojanin@10.100.26.28'
 alias sshpanther='ssh -A mobiledev2@panther'
 alias releasepad='ssh mobiledev@192.168.5.13'
 alias tckr='while true; do clear; bash ~/ticker.sh $(cat ~/.ticker.conf); sleep 2; done'
 alias iml='make ios_libs_device'
+alias ims='make ios_libs_sim'
 alias gc='git commit'
 alias gs='git status'
 alias gd='git diff'

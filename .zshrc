@@ -11,11 +11,9 @@ precmd () { vcs_info }
 PROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_} %f%# '
 
 
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
-if [ -e /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib":$LDFLAGS
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include":$CPPFLAGS
