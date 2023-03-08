@@ -11,7 +11,7 @@ precmd () { vcs_info }
 PROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_} %f%# '
 
 
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home'
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

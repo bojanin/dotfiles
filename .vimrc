@@ -129,6 +129,31 @@ let g:ycm_auto_hover = 'CursorHold'
 let g:ycm_auto_trigger = 1
 " make this 0 if you see performance hits
 let g:ycm_clangd_uses_ycmd_caching = 1
+let g:ycm_auto_hover='CursorHold'
+" python autocomplete and shit
+let g:ycm_python_interpreter_path = '/Users/skydio/aircam/build/host_aircam/bin/mc_python3'
+let g:ycm_server_python_interpreter = '/Users/skydio/aircam/build/host_aircam/bin/mc_python3'
+let g:ycm_python_sys_path = [
+    \"/Users/skydio/aircam",
+    \"/Users/skydio/aircam/third_party_modules",
+    \"/Users/skydio/aircam/third_party_modules/symforce_module/symforce",
+    \"/Users/skydio/aircam/third_party_modules/symforce_module/symforce/gen/python",
+    \"/Users/skydio/aircam/third_party_modules/gtsam_module/gtsam/python",
+    \"/Users/skydio/aircam/build/gen/lcmtypes/python2.7",
+    \"/Users/skydio/aircam/build/gen/pbtypes",
+    \"/Users/skydio/aircam/build/gen/pygen",
+    \"/Users/skydio/aircam/build/gen/channels",
+    \"/Users/skydio/aircam/build/host_aircam/lib/python2.7/dist-packages",
+    \"/Users/skydio/aircam/build/host_third_party/lib/python2.7/dist-packages",
+    \"/Users/skydio/aircam/build/host_third_party/lib/python2.7/site-packages",
+    \"/Users/skydio/aircam/build/host_third_party/python"
+    \ ]
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+
 nnoremap <silent> <leader>gd :silent! YcmCompleter GoTo <CR>
 nnoremap <silent> <leader>gr :silent! YcmCompleter GoToReferences <CR>
 nnoremap <silent> <leader>rr :silent! YcmCompleter RefactorRename <CR>
@@ -142,7 +167,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 set updatetime=750
-let g:ycm_auto_hover='CursorHold'
 
 " fuzzy search
 nnoremap <c-p> :GFiles<cr>
