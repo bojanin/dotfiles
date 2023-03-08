@@ -15,5 +15,7 @@ export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Hom
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+if [ -e /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/tom.bojanin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib":$LDFLAGS
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include":$CPPFLAGS
